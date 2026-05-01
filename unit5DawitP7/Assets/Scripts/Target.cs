@@ -9,7 +9,9 @@ public class Target : MonoBehaviour
     private float maxSpeed = 16;
     private float maxTorque = 10;
     private float xRange = 4;
-    private float ySpawnPos = -6;
+    private float ySpawnPos = -3;
+    private GameManager gameManager;
+    public int pointValue;
 
     void Start()
     {
@@ -17,11 +19,20 @@ public class Target : MonoBehaviour
 
         targetRb.AddForce(RandomForce(), ForceMode.Impulse);
         targetRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
-
+        
         
         transform.position = RandomSpawnPos();
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
-
+    private void OnMouseDown()
+    {
+        Destroy(gameObject);
+        gameManager.UpdateScore(pointValue);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        Destroy(gameObject);
+    }
     Vector3 RandomForce()
     {
         return Vector3.up * Random.Range(minSpeed, maxSpeed);

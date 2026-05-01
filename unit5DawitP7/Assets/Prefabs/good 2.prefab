@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6479787655962420532}
   - component: {fileID: 3624097290509230839}
   - component: {fileID: 8013580430280694886}
+  - component: {fileID: -7178581083373371468}
   m_Layer: 0
   m_Name: good 2
   m_TagString: Untagged
@@ -134,5 +135,18 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &-7178581083373371468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6207682322092772474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fb8a948dd8583e4ba57df472351e7e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointValue: 5
