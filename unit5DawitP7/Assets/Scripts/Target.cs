@@ -12,10 +12,15 @@ public class Target : MonoBehaviour
     private float ySpawnPos = -3;
     private GameManager gameManager;
     public int pointValue;
+    public ParticleSystem explosionParticle;
+    
 
     void Start()
     {
+       
         targetRb = GetComponent<Rigidbody>();
+
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
 
         targetRb.AddForce(RandomForce(), ForceMode.Impulse);
         targetRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
@@ -26,12 +31,21 @@ public class Target : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        Destroy(gameObject);
-        gameManager.UpdateScore(pointValue);
+        if (gameManager.isGameActive)
+        {
+            Destroy(gameObject);
+            Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
+
+            gameManager.UpdateScore(pointValue);
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
         Destroy(gameObject);
+        if (!gameObject.CompareTag("Bad"))
+        {
+            gameManager.Gameover();
+        }
     }
     Vector3 RandomForce()
     {
