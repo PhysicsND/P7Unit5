@@ -42,9 +42,9 @@ public class Target : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Destroy(gameObject);
-        if (!gameObject.CompareTag("Bad"))
+        if (!gameObject.CompareTag("Bad") && gameManager.isGameActive)
         {
-            gameManager.Gameover();
+            gameManager.UpdateLives(-1);
         }
     }
     Vector3 RandomForce()

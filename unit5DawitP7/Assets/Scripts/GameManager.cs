@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     public bool isGameActive;
     public Button restartButton;
     public GameObject titleScreen;
+    public TextMeshProUGUI livesText;
+    private int lives;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -44,6 +46,16 @@ public class GameManager : MonoBehaviour
         score += scoreToAdd;
         scoreText.text = "Score: " + score;
     }
+    public void UpdateLives(int livesToChange)
+    {
+        lives += livesToChange;
+        livesText.text = "Lives: " + lives;
+        if (lives <= 0)
+        {
+            Gameover();
+        }
+    }
+
     public void Gameover()
     {
         gameOverText.gameObject.SetActive(true);
@@ -61,6 +73,7 @@ public class GameManager : MonoBehaviour
         score = 0;
         titleScreen.gameObject.SetActive(false);
         UpdateScore(0);
+        UpdateLives(3);
         spawnRate /= difficulty;
     }
 }
