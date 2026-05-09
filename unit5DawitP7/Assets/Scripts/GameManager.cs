@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Rendering;
 
+
 public class GameManager : MonoBehaviour
 {
     public List<GameObject> targets;
@@ -20,6 +21,7 @@ public class GameManager : MonoBehaviour
     private int lives;
     public GameObject pauseScreen;
     private bool paused;
+    private int nextLifeScore = 300;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -50,6 +52,14 @@ public class GameManager : MonoBehaviour
     {
         score += scoreToAdd;
         scoreText.text = "Score: " + score;
+       
+        if (score >= nextLifeScore)
+        {
+            UpdateLives(1);
+            nextLifeScore += 300;
+            Debug.Log("Extra life gained!");
+            // Adds 1 life every interval of 300
+        }
     }
     public void UpdateLives(int livesToChange)
     {
