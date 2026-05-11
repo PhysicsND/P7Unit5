@@ -21,7 +21,8 @@ public class GameManager : MonoBehaviour
     private int lives;
     public GameObject pauseScreen;
     private bool paused;
-    private int nextLifeScore = 300;
+    private int nextLifeScore = 150;
+        
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -56,9 +57,9 @@ public class GameManager : MonoBehaviour
         if (score >= nextLifeScore)
         {
             UpdateLives(1);
-            nextLifeScore += 300;
+            nextLifeScore += 150;
             Debug.Log("Extra life gained!");
-            // Adds 1 life every interval of 300
+            // Adds 1 life every interval of 150
         }
     }
     public void UpdateLives(int livesToChange)
